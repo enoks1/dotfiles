@@ -3,7 +3,7 @@
 (deftheme masked ()
           "Masked theme for GNU Emacs")
 
-(let ((masked-bg          "#000000")
+(let ((masked-bg          "#000010")
       (masked-bg-1        "#1f1f1f")
       (masked-bg-2        "#191919")
 
@@ -38,10 +38,10 @@
 
    ;; font-lock
    `(font-lock-builtin-face ((t (:foreground ,masked-green))))
-   `(font-lock-comment-face ((t (:foreground ,masked-blue))))
-   `(font-lock-comment-delimiter-face ((t (:foreground ,masked-blue))))
+   `(font-lock-comment-face ((t (:foreground ,masked-blue :slant italic))))
+   `(font-lock-comment-delimiter-face ((t (:foreground ,masked-blue :slant italic))))
    `(font-lock-constant-face ((t (:foreground ,masked-cyan))))
-   `(font-lock-doc-face ((t (:foreground ,masked-green))))
+   `(font-lock-doc-face ((t (:foreground ,masked-green :slant italic))))
    `(font-lock-function-name-face ((t (:foreground ,masked-fg))))
    `(font-lock-keyword-face ((t (:foreground ,masked-yellow :weight medium))))
    `(font-lock-preprocessor-face ((t (:foreground ,masked-magenta))))
