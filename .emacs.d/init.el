@@ -20,20 +20,27 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 
-(set-face-attribute 'default nil :font "Iosevka" :height 165 :slant 'normal :weight 'normal)
+(set-face-attribute 'default nil :font "Essential PragmataPro" :height 120 :slant 'normal :weight 'normal)
 
+(icomplete-mode 1)
+
+;; Local & Packages & Expressions;;
 (load-file "~/.emacs.d/masked-theme.el")
 
-(require 'masked-theme)
+;;(load-file "~/.emacs.d/zenburn-theme.el")
 (load-theme 'masked t)
 
-;; Packages & Expressions ;;
-(use-package powerline
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :config (load-theme 'zenburn t))
+
+(use-package moe-theme
+  :disabled t
   :ensure t
-  :config
-  (powerline-default-theme))
+  :config (load-theme 'moe-dark t))
 
 (use-package highlight-numbers
+  :disabled
   :ensure t
   :hook ((prog-mode . highlight-numbers-mode)))
 
@@ -44,11 +51,11 @@
   :ensure t
   :hook ((prog-mode . company-mode)))
 
-(use-package multi-vterm
-  :ensure t
-  :config
-  (global-set-key (kbd "C-c v") 'multi-vterm-dedicated-open)
-  (global-set-key (kbd "C-c d") 'multi-vterm-dedicated-open))
+;; (use-package multi-vterm
+;;   :ensure t
+;;   :config
+;;   (global-set-key (kbd "C-c v") 'multi-vterm-dedicated-open)
+;;   (global-set-key (kbd "C-c d") 'multi-vterm-dedicated-open))
 
 (use-package drag-stuff
   :ensure t
@@ -61,9 +68,9 @@
 (use-package sudo-edit
   :ensure t)
 
-(use-package slime
-  :ensure t
-  :config (setq inferior-lisp-program "sbcl"))
+;; (use-package slime
+;;   :ensure t
+;;   :config (setq inferior-lisp-program "sbcl"))
 
 (defun transparency (value)
   "Sets the transparency of the frame window. 0 = transparent, 100 = opaque"
@@ -83,13 +90,6 @@
                                 (eldoc-minibuffer-message "Indenting buffer...done")))
 (global-set-key (kbd "C-c m") 'comment-or-uncomment-region)
 
-;; Org ;;
-(add-hook 'org-mode-hook
-          (lambda ()
-            (setq
-             display-line-numbers-type 'normal)
-            (display-line-numbers-mode 1)))
-
 ;; Programming ;;
 (add-hook 'prog-mode-hook
           (lambda ()
@@ -100,28 +100,21 @@
              tab-width 4
              parens-require-spaces nil
              show-paren-style 'parenthesis
-             whitespace-style '(face tabs spaces tab-mark space-mark trailing indentation empty missing-newline-at-eof)
+             whitespace-style '(spaces space-mark tabs tab-mark face trailing indentation empty missing-newline-at-eof)
              asm-comment-char ?#)
             (whitespace-mode 1)
-            (electric-pair-mode 0)
+            (electric-pair-mode 1)
             (electric-indent-mode 1)
+            (rainbow-delimiters-mode 1)
             (display-line-numbers-mode 1)))
 
-(add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (setq display-line-numbers-type 'normal)
+            (display-line-numbers-mode 1)))
 
-;; Custom ;;
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("cd51c4e5a258ab9fd82de1fb4c0eee54326de5e307e3bf2895467ae103bc562b" "e27c9668d7eddf75373fa6b07475ae2d6892185f07ebed037eedf783318761d7" "1d9fd158c76450d754bdbc29634a78cfaa0e1eceb3b92095c934e085333f3efc" "70ec7646ae2d333d437e76e969a29389958cd312fda4f68eb3e0e36d057edb5d" "76f94e145b5313f14d159051d2b714478f52325a6465fce7ce46f44dffed386c" default))
- '(package-selected-packages
-   '(drag-stuff vterm multi-vterm tangonov-theme zenburn-theme zenburn gruber-darker-theme rust-mode leuven-theme turkish sudo-edit slime rainbow-mode powerline highlight-numbers company)))
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq comment-start "//" comment-end "")))
+
+(add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
