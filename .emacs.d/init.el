@@ -1,3 +1,8 @@
+;;; FIXME: `use-package-always-ensure' not actually ensuring everywhere
+;;    after each `use-package'
+;;; FIXME: `drag-stuff' keybinds do not feel good
+;;; NOTE: is `multi-vterm' really needed?
+
 ;; Enviroment Variables
 (setq-default debug-on-error nil
               mouse-wheel-progressive-speed nil
@@ -37,8 +42,8 @@
 
 (icomplete-mode 1)
 
-(use-package spacemacs-theme
-  :config (load-theme 'spacemacs-dark t))
+(load-file "~/.emacs.d/masked-theme.el")
+(load-theme 'masked t)
 
 (use-package highlight-indentation)
 
@@ -75,13 +80,6 @@
 ;; Local Packages
 (use-package highlight-numbers
   :hook ((prog-mode . highlight-numbers-mode)))
-
-(use-package rainbow-delimiters
-  :hook ((prog-mode . rainbow-delimiters-mode)))
-
-(use-package hl-todo
-  :hook ((prog-mode . hl-todo-mode)
-         (elpy-mode . hl-todo-mode)))
 
 (use-package rainbow-mode)
 
