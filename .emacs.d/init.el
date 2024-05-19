@@ -45,7 +45,8 @@
 (load-file "~/.emacs.d/masked-theme.el")
 (load-theme 'masked t)
 
-(use-package highlight-indentation)
+(use-package highlight-indentation
+  :hook ((python-mode . highlight-indentation-mode)))
 
 ;; Ligatures for 'Berkeley Mono'
 (use-package ligature
@@ -144,14 +145,16 @@
             (whitespace-mode 1)
             (electric-pair-mode 1)
             (electric-indent-mode 1)
-            (display-line-numbers-mode -1)
-            (highlight-indentation-mode 1)
+            (display-line-numbers-mode 1)
             (display-fill-column-indicator-mode 1)))
 
-(add-hook 'org-mode-hook
+(add-hook 'lisp-mode-hook
           (lambda ()
-            (let ((display-line-numbers-type 'normal))
-              (display-line-numbers-mode -1))))
+            (display-line-numbers-mode -1)))
+
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (display-line-numbers-mode -1)))
 
 (add-hook 'c-mode-hook
           (lambda ()
