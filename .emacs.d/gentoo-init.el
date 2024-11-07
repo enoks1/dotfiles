@@ -56,12 +56,13 @@
   (global-set-key (kbd "C-c c") 'compile)
   (global-set-key (kbd "C-c b") 'eval-buffer)
   (global-set-key (kbd "C-c s") 'shell-command)
-  (global-set-key (kbd "C-c i") (lambda ()
-                                  (interactive)
+  (global-set-key (kbd "C-c i") (lambda () (interactive)
                                   (eldoc-minibuffer-message "Indenting buffer...")
                                   (indent-region 0 (point-max))
                                   (eldoc-minibuffer-message "Indenting buffer...done")))
-  (global-set-key (kbd "C-c m") 'comment-or-uncomment-region))
+  (global-set-key (kbd "C-c m") 'comment-or-uncomment-region)
+  (global-set-key (kbd "C-c l") (lambda () (interactive)
+                                  (load-file "~/.emacs.d/init.el"))))
 
 (use-package zenburn-theme
   :ensure t
